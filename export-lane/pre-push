@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# this hook is called after before a 'git push' is run. it is executed from the root of the repository.
+node export-lane.js
