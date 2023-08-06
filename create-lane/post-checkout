@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# this hook is called after a git checkout is run. it is executed from the root of the repository.
+node create-lane.js
