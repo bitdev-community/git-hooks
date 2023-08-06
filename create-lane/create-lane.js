@@ -37,16 +37,13 @@ function brachIsNotNew() {
  * */
 const currentBranchName = runCommand('git branch --show-current');
 if (currentBranchName === DEFAULT_BRANCH) {
-  const switchToMainOutput = runCommand('bit lane switch main');
-  console.log(switchToMainOutput.toString());
+  execSync('bit lane switch main', { stdio: 'inherit' });
 } else if (brachIsNotNew()) {
   const defaultScope = getDefaultScope();
   /* switch to the lane if the branch is not new. use lane id to import the lane if not available locally */
-  const switchToLaneOutput = runCommand(
-    `bit lane switch ${defaultScope}/${currentBranchName}`
-  );
-  console.log(switchToLaneOutput.toString());
+  execSync(`bit lane switch ${defaultScope}/${currentBranchName}`, {
+    stdio: 'inherit',
+  });
 } else {
-  const newLaneOutput = runCommand(`bit lane create ${currentBranchName}`);
-  console.log(newLaneOutput.toString());
+  execSync(`bit lane create ${currentBranchName}`, { stdio: 'inherit' });
 }
